@@ -115,11 +115,11 @@ class _SeriePosterAndTitle extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2),
                 Text(
-                    'Año : ' +
+                    'Año :  ' +
                         UtilidadFecha.formatDate(serie.firstAirDate!, 'yyyy'),
                     style: TextStyle(fontSize: 15.0),
                     overflow: TextOverflow.ellipsis),
-                Text('Idioma Origen: ' + serie.originalLanguage.toUpperCase(),
+                Text('Idioma Origen:  ' + serie.fullOriginalLanguage,
                     style: TextStyle(fontSize: 15.0),
                     overflow: TextOverflow.ellipsis),
                 Row(
