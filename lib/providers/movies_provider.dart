@@ -13,7 +13,7 @@ class MoviesProvider extends ChangeNotifier {
   String _apiKey = 'fd6e6e97276183956c3334241bf7dcf8';
   String _baseUrl = 'api.themoviedb.org';
   String _baseUrlGenre = 'https://api.themoviedb.org';
-  String _language = 'es-ES';
+  String _language = 'es-MX';
 
   List<Movie> onDisplayMovies = [];
   List<Movie> popularMovies = [];
