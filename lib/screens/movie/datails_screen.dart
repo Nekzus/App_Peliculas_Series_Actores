@@ -113,11 +113,11 @@ class _PosterAndTitle extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2),
                 Text(
-                    'Año :  ' +
+                    'Año : ' +
                         UtilidadFecha.formatDate(movie.releaseDate!, 'yyyy'),
                     style: TextStyle(fontSize: 15.0),
                     overflow: TextOverflow.ellipsis),
-                Text('Idioma Origen:  ' + movie.fullOriginalLanguage,
+                Text('Idioma Origen: ' + movie.fullOriginalLanguage,
                     style: TextStyle(fontSize: 15.0),
                     overflow: TextOverflow.ellipsis),
                 Row(
