@@ -62,7 +62,7 @@ class Cast {
     if (this.profilePath != null)
       return 'https://image.tmdb.org/t/p/w500${this.profilePath}';
 
-    return 'https://i.stack.imgur.com/GNhxO.png';
+    return 'https://i.pinimg.com/236x/6e/b6/68/6eb668f57953414eb15bc9bb18306c29.jpg';
   }
 
   factory Cast.fromJson(String str) => Cast.fromMap(json.decode(str));

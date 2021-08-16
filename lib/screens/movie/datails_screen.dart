@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:peliculas_reversionado/models/movie/models.dart';
 import 'package:peliculas_reversionado/providers/movies_provider.dart';
-import 'package:peliculas_reversionado/utilities/utilities_format.dart';
+//import 'package:peliculas_reversionado/utilities/utilities_format.dart';
 import 'package:peliculas_reversionado/widgets/movie/widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -113,8 +114,8 @@ class _PosterAndTitle extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2),
                 Text(
-                    'Año : ' +
-                        UtilidadFecha.formatDate(movie.releaseDate!, 'yyyy'),
+                    'Fecha Lanzamiento : ${DateFormat('dd-MM-yyyy').format(DateTime.parse(movie.releaseDate!))}',
+                    //UtilidadFecha.formatDate(movie.releaseDate!, 'yyyy'),
                     style: TextStyle(fontSize: 15.0),
                     overflow: TextOverflow.ellipsis),
                 Text('Idioma Origen: ' + movie.fullOriginalLanguage,

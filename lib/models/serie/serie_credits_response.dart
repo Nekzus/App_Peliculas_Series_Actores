@@ -59,7 +59,7 @@ class Cast {
     if (this.profilePath != null)
       return 'https://image.tmdb.org/t/p/w500${this.profilePath}';
 
-    return 'https://i.stack.imgur.com/GNhxO.png';
+    return 'https://3.bp.blogspot.com/-fsG9KlI1P14/TsIHzSr9-bI/AAAAAAAABJY/EMlyo42oUkU/s1600/4-Avatares-para-Facebook.jpg';
   }
 
   factory Cast.fromJson(String str) => Cast.fromMap(json.decode(str));
