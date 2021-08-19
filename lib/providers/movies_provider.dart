@@ -22,6 +22,7 @@ class MoviesProvider extends ChangeNotifier {
   List<Genre> genreList = [];
 
   Map<int, List<Cast>> moviesCast = {};
+  Map<int, List<GenreMovie>> genreMovie = {};
   Map<int, List<Movie>> moviesSimilar = {};
   //Map<int, List<MovieGenre>> movieList = {};
 
@@ -93,6 +94,17 @@ class MoviesProvider extends ChangeNotifier {
     moviesCast[movieId] = creditsResponse.cast;
 
     return creditsResponse.cast;
+  }
+
+  Future<List<GenreMovie>> getMovieGenre(int movieId) async {
+    if (genreMovie.containsKey(movieId)) return genreMovie[movieId]!;
+
+    final jsonData = await _getJsonData('3/movie/$movieId');
+    final genreMovieResponse = MovieDetails.fromJson(jsonData);
+
+    genreMovie[movieId] = genreMovieResponse.genres;
+
+    return genreMovieResponse.genres;
   }
 
   Future<List<Movie>> searchMovies(String query) async {

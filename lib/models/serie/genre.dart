@@ -4,12 +4,14 @@ class Genre {
 
   String? error;
 
-  Genre({this.id, this.name});
+  Genre({required this.id, required this.name});
 
   factory Genre.fromJson(dynamic json) {
     if (json == null) {
-      return Genre();
+      return Genre(id: null, name: '');
     }
     return Genre(id: json['id'], name: json['name']);
   }
+
+  static fromMap(x) {}
 }

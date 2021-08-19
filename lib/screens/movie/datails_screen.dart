@@ -23,6 +23,7 @@ class DetailsScreen extends StatelessWidget {
             delegate: SliverChildListDelegate([
           _PosterAndTitle(movie),
           SizedBox(height: 10.0),
+          MovieGenreWidget(movie.id),
           _Overview(movie),
           SizedBox(height: 5.0),
           CastingCards(movie.id),
@@ -114,7 +115,7 @@ class _PosterAndTitle extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2),
                 Text(
-                    'Fecha Lanzamiento : ${DateFormat('dd-MM-yyyy').format(DateTime.parse(movie.releaseDate!))}',
+                    'Estreno: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(movie.releaseDate!))}',
                     //UtilidadFecha.formatDate(movie.releaseDate!, 'yyyy'),
                     style: TextStyle(fontSize: 15.0),
                     overflow: TextOverflow.ellipsis),

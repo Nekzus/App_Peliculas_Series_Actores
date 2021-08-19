@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:peliculas_reversionado/models/movie/models.dart';
 import 'package:peliculas_reversionado/providers/movies_provider.dart';
-import 'package:peliculas_reversionado/utilities/utilities_format.dart';
+//import 'package:peliculas_reversionado/utilities/utilities_format.dart';
 import 'package:peliculas_reversionado/widgets/movie/widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +24,7 @@ class DetailsCategory extends StatelessWidget {
             delegate: SliverChildListDelegate([
           _PosterAndTitle(movie),
           SizedBox(height: 10.0),
+          MovieGenreWidget(movie.id),
           _Overview(movie),
           SizedBox(height: 5.0),
           CastingCards(movie.id),
@@ -115,7 +116,7 @@ class _PosterAndTitle extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2),
                 Text(
-                    'Fecha Lanzamiento : ${DateFormat('dd-MM-yyyy').format(DateTime.parse(movie.releaseDate!))}',
+                    'Estreno: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(movie.releaseDate!))}',
                     //UtilidadFecha.formatDate(movie.releaseDate!, 'yyyy')
                     style: TextStyle(fontSize: 15.0),
                     overflow: TextOverflow.ellipsis),

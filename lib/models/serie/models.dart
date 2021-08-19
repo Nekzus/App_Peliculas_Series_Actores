@@ -8,3 +8,4 @@ export 'package:peliculas_reversionado/models/serie/genre.dart';
 export 'package:peliculas_reversionado/models/serie/serie_preview.dart';
 export 'package:peliculas_reversionado/models/serie/serie_search_response.dart';
 export 'package:peliculas_reversionado/models/serie/serie_airing_today.dart';
+export 'package:peliculas_reversionado/models/serie/serie_details.dart';

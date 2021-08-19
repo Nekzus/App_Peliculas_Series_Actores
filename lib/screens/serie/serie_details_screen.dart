@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:peliculas_reversionado/models/serie/models.dart';
 import 'package:peliculas_reversionado/providers/series_provider.dart';
+import 'package:peliculas_reversionado/widgets/serie/serie_genre_widget.dart';
 //import 'package:peliculas_reversionado/utilities/utilities_format.dart';
 import 'package:peliculas_reversionado/widgets/serie/widgets.dart';
 import 'package:peliculas_reversionado/widgets/serie/serie_similar_slider.dart';
@@ -24,6 +25,7 @@ class SerieDetailsScreen extends StatelessWidget {
             delegate: SliverChildListDelegate([
           _SeriePosterAndTitle(serie),
           SizedBox(height: 10.0),
+          SerieGenreWidget(serie.id),
           _SerieOverview(serie),
           SizedBox(height: 5.0),
           SerieCastingCards(serie.id),
@@ -115,7 +117,7 @@ class _SeriePosterAndTitle extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2),
                 Text(
-                    'Fecha Lanzamiento : ${DateFormat('dd-MM-yyyy').format(DateTime.parse(serie.firstAirDate!))}',
+                    'Estreno: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(serie.firstAirDate!))}',
                     //UtilidadFecha.formatDate(serie.firstAirDate!, 'yyyy'),
                     style: TextStyle(fontSize: 15.0),
                     overflow: TextOverflow.ellipsis),
