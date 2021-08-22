@@ -2,17 +2,16 @@ import 'dart:convert';
 
 class SerieDetails {
   SerieDetails({
-    required this.backdropPath,
+    this.backdropPath,
     required this.createdBy,
     required this.episodeRunTime,
-    required this.firstAirDate,
+    this.firstAirDate,
     required this.genres,
     required this.homepage,
     required this.id,
     required this.inProduction,
     required this.languages,
-    required this.lastAirDate,
-    required this.lastEpisodeToAir,
+    this.lastAirDate,
     required this.name,
     required this.nextEpisodeToAir,
     required this.networks,
@@ -23,7 +22,7 @@ class SerieDetails {
     required this.originalName,
     required this.overview,
     required this.popularity,
-    required this.posterPath,
+    this.posterPath,
     required this.productionCompanies,
     required this.productionCountries,
     required this.seasons,
@@ -38,14 +37,13 @@ class SerieDetails {
   String? backdropPath;
   List<CreatedBy> createdBy;
   List<int> episodeRunTime;
-  DateTime firstAirDate;
-  List<Genres> genres;
+  String? firstAirDate;
+  List<GenreSerie> genres;
   String homepage;
   int id;
   bool inProduction;
   List<String> languages;
-  DateTime lastAirDate;
-  LastEpisodeToAir lastEpisodeToAir;
+  String? lastAirDate;
   String name;
   dynamic nextEpisodeToAir;
   List<Network> networks;
@@ -56,7 +54,7 @@ class SerieDetails {
   String originalName;
   String overview;
   double popularity;
-  String posterPath;
+  String? posterPath;
   List<Network> productionCompanies;
   List<ProductionCountry> productionCountries;
   List<Season> seasons;
@@ -64,8 +62,77 @@ class SerieDetails {
   String status;
   String tagline;
   String type;
-  double voteAverage;
+  String voteAverage;
   int voteCount;
+  String? heroId;
+
+  get fullPosterImg {
+    if (this.posterPath != null)
+      return 'https://image.tmdb.org/t/p/w500${this.posterPath}';
+
+    return 'https://i.stack.imgur.com/GNhxO.png';
+  }
+
+  get fullBackdropPath {
+    if (this.backdropPath != null)
+      return 'https://image.tmdb.org/t/p/w500${this.backdropPath}';
+
+    return 'https://i.stack.imgur.com/GNhxO.png';
+  }
+
+  get fullOriginalLanguage {
+    if (this.originalLanguage == "en") {
+      return 'Inglés';
+    } else if (this.originalLanguage == "es") {
+      return 'Español';
+    } else if (this.originalLanguage == "ja") {
+      return 'Japonés';
+    } else if (this.originalLanguage == "fr") {
+      return 'Francés';
+    } else if (this.originalLanguage == "ko") {
+      return 'Koreano';
+    } else if (this.originalLanguage == "pt") {
+      return 'Portugués';
+    } else if (this.originalLanguage == "de") {
+      return 'Alemán';
+    } else if (this.originalLanguage == "pt") {
+      return 'Portugués';
+    } else if (this.originalLanguage == "pt") {
+      return 'Portugués';
+    } else if (this.originalLanguage == "ru") {
+      return 'Ruso';
+    } else if (this.originalLanguage == "ar") {
+      return 'Árabe';
+    } else if (this.originalLanguage == "pl") {
+      return 'Polaco';
+    } else if (this.originalLanguage == "fa") {
+      return 'Persa';
+    } else if (this.originalLanguage == "da") {
+      return 'Danés';
+    } else if (this.originalLanguage == "no") {
+      return 'Noruego';
+    } else if (this.originalLanguage == "zh") {
+      return 'Chino Mandarín';
+    } else if (this.originalLanguage == "it") {
+      return 'Italiano';
+    } else if (this.originalLanguage == "hi") {
+      return 'Hindi';
+    } else if (this.originalLanguage == "ga") {
+      return 'Irlandés';
+    }
+    return originalLanguage.toUpperCase();
+  }
+
+  get fullStatus {
+    if (this.status == "Ended") {
+      return 'Finalizada';
+    } else if (this.status == "Canceled") {
+      return 'Cancelada';
+    } else if (this.status == "Returning Series") {
+      return 'Vigente';
+    }
+    return status.toUpperCase();
+  }
 
   factory SerieDetails.fromJson(String str) =>
       SerieDetails.fromMap(json.decode(str));
@@ -77,14 +144,14 @@ class SerieDetails {
         createdBy: List<CreatedBy>.from(
             json["created_by"].map((x) => CreatedBy.fromMap(x))),
         episodeRunTime: List<int>.from(json["episode_run_time"].map((x) => x)),
-        firstAirDate: DateTime.parse(json["first_air_date"]),
-        genres: List<Genres>.from(json["genres"].map((x) => Genres.fromMap(x))),
+        firstAirDate: json["first_air_date"],
+        genres: List<GenreSerie>.from(
+            json["genres"].map((x) => GenreSerie.fromMap(x))),
         homepage: json["homepage"],
         id: json["id"],
         inProduction: json["in_production"],
         languages: List<String>.from(json["languages"].map((x) => x)),
-        lastAirDate: DateTime.parse(json["last_air_date"]),
-        lastEpisodeToAir: LastEpisodeToAir.fromMap(json["last_episode_to_air"]),
+        lastAirDate: json["last_air_date"],
         name: json["name"],
         nextEpisodeToAir: json["next_episode_to_air"],
         networks:
@@ -109,7 +176,7 @@ class SerieDetails {
         status: json["status"],
         tagline: json["tagline"],
         type: json["type"],
-        voteAverage: json["vote_average"].toDouble(),
+        voteAverage: json["vote_average"].toStringAsPrecision(2),
         voteCount: json["vote_count"],
       );
 
@@ -117,16 +184,11 @@ class SerieDetails {
         "backdrop_path": backdropPath,
         "created_by": List<dynamic>.from(createdBy.map((x) => x.toMap())),
         "episode_run_time": List<dynamic>.from(episodeRunTime.map((x) => x)),
-        "first_air_date":
-            "${firstAirDate.year.toString().padLeft(4, '0')}-${firstAirDate.month.toString().padLeft(2, '0')}-${firstAirDate.day.toString().padLeft(2, '0')}",
         "genres": List<dynamic>.from(genres.map((x) => x.toMap())),
         "homepage": homepage,
         "id": id,
         "in_production": inProduction,
         "languages": List<dynamic>.from(languages.map((x) => x)),
-        "last_air_date":
-            "${lastAirDate.year.toString().padLeft(4, '0')}-${lastAirDate.month.toString().padLeft(2, '0')}-${lastAirDate.day.toString().padLeft(2, '0')}",
-        "last_episode_to_air": lastEpisodeToAir.toMap(),
         "name": name,
         "next_episode_to_air": nextEpisodeToAir,
         "networks": List<dynamic>.from(networks.map((x) => x.toMap())),
@@ -189,8 +251,8 @@ class CreatedBy {
       };
 }
 
-class Genres {
-  Genres({
+class GenreSerie {
+  GenreSerie({
     required this.id,
     required this.name,
   });
@@ -198,11 +260,12 @@ class Genres {
   int id;
   String name;
 
-  factory Genres.fromJson(String str) => Genres.fromMap(json.decode(str));
+  factory GenreSerie.fromJson(String str) =>
+      GenreSerie.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Genres.fromMap(Map<String, dynamic> json) => Genres(
+  factory GenreSerie.fromMap(Map<String, dynamic> json) => GenreSerie(
         id: json["id"],
         name: json["name"],
       );
@@ -210,65 +273,6 @@ class Genres {
   Map<String, dynamic> toMap() => {
         "id": id,
         "name": name,
-      };
-}
-
-class LastEpisodeToAir {
-  LastEpisodeToAir({
-    required this.airDate,
-    required this.episodeNumber,
-    required this.id,
-    required this.name,
-    required this.overview,
-    required this.productionCode,
-    required this.seasonNumber,
-    required this.stillPath,
-    required this.voteAverage,
-    required this.voteCount,
-  });
-
-  DateTime airDate;
-  int episodeNumber;
-  int id;
-  String name;
-  String overview;
-  String productionCode;
-  int seasonNumber;
-  String? stillPath;
-  double voteAverage;
-  int voteCount;
-
-  factory LastEpisodeToAir.fromJson(String str) =>
-      LastEpisodeToAir.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory LastEpisodeToAir.fromMap(Map<String, dynamic> json) =>
-      LastEpisodeToAir(
-        airDate: DateTime.parse(json["air_date"]),
-        episodeNumber: json["episode_number"],
-        id: json["id"],
-        name: json["name"],
-        overview: json["overview"],
-        productionCode: json["production_code"],
-        seasonNumber: json["season_number"],
-        stillPath: json["still_path"],
-        voteAverage: json["vote_average"].toDouble(),
-        voteCount: json["vote_count"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "air_date":
-            "${airDate.year.toString().padLeft(4, '0')}-${airDate.month.toString().padLeft(2, '0')}-${airDate.day.toString().padLeft(2, '0')}",
-        "episode_number": episodeNumber,
-        "id": id,
-        "name": name,
-        "overview": overview,
-        "production_code": productionCode,
-        "season_number": seasonNumber,
-        "still_path": stillPath,
-        "vote_average": voteAverage,
-        "vote_count": voteCount,
       };
 }
 

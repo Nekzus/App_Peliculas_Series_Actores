@@ -15,7 +15,7 @@ class SerieGenreWidget extends StatelessWidget {
 
     return FutureBuilder(
       future: seriesProvider.getSerieGenre(serieId),
-      builder: (_, AsyncSnapshot<List<Genres>> snapshot) {
+      builder: (_, AsyncSnapshot<List<GenreSerie>> snapshot) {
         if (!snapshot.hasData) {
           return Container(
             constraints: BoxConstraints(maxWidth: 150),
@@ -24,8 +24,7 @@ class SerieGenreWidget extends StatelessWidget {
           );
         }
 
-        final List<Genres> genres = snapshot.data!;
-
+        final List<GenreSerie> genres = snapshot.data!;
         return Container(
           margin: EdgeInsets.only(bottom: 5),
           width: double.infinity,
@@ -38,7 +37,7 @@ class SerieGenreWidget extends StatelessWidget {
                   itemCount: genres.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    Genres genre = genres[index];
+                    GenreSerie genre = genres[index];
                     return Column(
                       children: <Widget>[
                         Container(

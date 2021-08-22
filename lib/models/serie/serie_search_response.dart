@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:peliculas_reversionado/models/serie/models.dart';
+import 'package:peliculas_reversionado/models/serie/serie.dart';
 
 class SerieSearchResponse {
   SerieSearchResponse({

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swipper/flutter_card_swiper.dart';
 import 'package:peliculas_reversionado/models/serie/models.dart';
+import 'package:peliculas_reversionado/models/serie/serie.dart';
 
 class SerieCardSwiper extends StatelessWidget {
   final List<Serie> series;

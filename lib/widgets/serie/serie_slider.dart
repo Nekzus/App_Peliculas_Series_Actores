@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:peliculas_reversionado/models/serie/models.dart';
+import 'package:peliculas_reversionado/models/serie/serie.dart';
 
 class SerieSlider extends StatefulWidget {
   final List<Serie> series;
@@ -58,8 +59,9 @@ class _SerieSliderState extends State<SerieSlider> {
                 scrollDirection: Axis.horizontal,
                 itemCount: widget.series.length,
                 itemBuilder: (_, int index) => _SeriePoster(
-                    widget.series[index],
-                    '${widget.title}-$index-${widget.series[index].id}')),
+                      widget.series[index],
+                      //'${widget.title}-$index-${widget.series[index].id}'
+                    )),
           ),
         ],
       ),
@@ -69,13 +71,13 @@ class _SerieSliderState extends State<SerieSlider> {
 
 class _SeriePoster extends StatelessWidget {
   final Serie serie;
-  final String heroId;
+  //final String heroId;
 
-  const _SeriePoster(this.serie, this.heroId);
+  const _SeriePoster(this.serie /*, this.heroId*/);
 
   @override
   Widget build(BuildContext context) {
-    serie.heroId = heroId;
+    //serie.heroId = heroId;
     return Container(
       width: 100,
       height: 139,
@@ -86,7 +88,7 @@ class _SeriePoster extends StatelessWidget {
             onTap: () =>
                 Navigator.pushNamed(context, 'detailsSerie', arguments: serie),
             child: Hero(
-              tag: serie.heroId!,
+              tag: serie.id,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15.0),
                 child: CachedNetworkImage(

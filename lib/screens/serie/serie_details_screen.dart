@@ -1,13 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+//import 'package:intl/intl.dart';
 import 'package:peliculas_reversionado/models/serie/models.dart';
 import 'package:peliculas_reversionado/providers/series_provider.dart';
-import 'package:peliculas_reversionado/widgets/serie/serie_genre_widget.dart';
-//import 'package:peliculas_reversionado/utilities/utilities_format.dart';
 import 'package:peliculas_reversionado/widgets/serie/widgets.dart';
-import 'package:peliculas_reversionado/widgets/serie/serie_similar_slider.dart';
+//import 'package:peliculas_reversionado/utilities/utilities_format.dart';
 import 'package:provider/provider.dart';
 
 class SerieDetailsScreen extends StatelessWidget {
@@ -23,7 +21,8 @@ class SerieDetailsScreen extends StatelessWidget {
         _SerieCustomAppBar(serie),
         SliverList(
             delegate: SliverChildListDelegate([
-          _SeriePosterAndTitle(serie),
+          SizedBox(height: 10.0),
+          SerieDetailsWidget(serie.id),
           SizedBox(height: 10.0),
           SerieGenreWidget(serie.id),
           _SerieOverview(serie),
@@ -69,96 +68,6 @@ class _SerieCustomAppBar extends StatelessWidget {
             child: Center(child: CupertinoActivityIndicator()),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _SeriePosterAndTitle extends StatelessWidget {
-  final Serie serie;
-
-  const _SeriePosterAndTitle(this.serie);
-
-  @override
-  Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
-    final size = MediaQuery.of(context).size;
-
-    return Container(
-      margin: EdgeInsets.only(top: 10),
-      padding: EdgeInsets.symmetric(horizontal: 20),
-      child: Row(
-        children: [
-          Hero(
-            tag: serie.heroId!,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: CachedNetworkImage(
-                imageUrl: serie.fullPosterImg,
-                width: 100,
-                height: 139,
-                fit: BoxFit.cover,
-                placeholder: (context, url) => Container(
-                  width: 100,
-                  height: 139,
-                  child: Center(child: CupertinoActivityIndicator()),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(width: 15),
-          ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: size.width - 195),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(serie.name,
-                    style: textTheme.headline6,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2),
-                Text(
-                    'Estreno: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(serie.firstAirDate!))}',
-                    //UtilidadFecha.formatDate(serie.firstAirDate!, 'yyyy'),
-                    style: TextStyle(fontSize: 15.0),
-                    overflow: TextOverflow.ellipsis),
-                Text('Idioma Origen: ' + serie.fullOriginalLanguage,
-                    style: TextStyle(fontSize: 15.0),
-                    overflow: TextOverflow.ellipsis),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.star,
-                      color: Colors.yellow,
-                      size: 17.0,
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: Colors.yellow,
-                      size: 17.0,
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: Colors.yellow,
-                      size: 17.0,
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: Colors.yellow,
-                      size: 17.0,
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: Colors.yellow,
-                      size: 17.0,
-                    ),
-                    SizedBox(width: 5.0),
-                    Text(serie.voteAverage, style: TextStyle(fontSize: 15.0))
-                  ],
-                )
-              ],
-            ),
-          )
-        ],
       ),
     );
   }

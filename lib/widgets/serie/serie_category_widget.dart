@@ -154,8 +154,6 @@ class BuildWidgetCategorySerieState extends State<BuildWidgetCategorySerie> {
                           itemBuilder: (context, index) {
                             SerieGenre serie = serieList[index];
 
-                            serie.heroId = 'categorySerie-${serie.id}';
-
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -166,7 +164,7 @@ class BuildWidgetCategorySerieState extends State<BuildWidgetCategorySerie> {
                                         arguments: serie);
                                   },
                                   child: Hero(
-                                    tag: serie.heroId!,
+                                    tag: serie.id,
                                     child: ClipRRect(
                                       child: CachedNetworkImage(
                                         imageUrl:

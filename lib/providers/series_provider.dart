@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:peliculas_reversionado/models/serie/models.dart';
 import 'package:peliculas_reversionado/helpers/serie/debouncer.dart';
-import 'package:peliculas_reversionado/models/serie/serie_details.dart';
 
 class SeriesProvider extends ChangeNotifier {
   final Dio _dio = Dio();
@@ -23,7 +22,7 @@ class SeriesProvider extends ChangeNotifier {
   List<SerieGenre> serieList = [];
 
   Map<int, List<Cast>> seriesCast = {};
-  Map<int, List<Genres>> genreSerie = {};
+  Map<int, List<GenreSerie>> genreSerie = {};
   Map<int, List<Serie>> seriesSimilar = {};
 
   int _popularPage = 0;
@@ -106,7 +105,7 @@ class SeriesProvider extends ChangeNotifier {
     return creditsResponse.cast;
   }
 
-  Future<List<Genres>> getSerieGenre(int serieId) async {
+  Future<List<GenreSerie>> getSerieGenre(int serieId) async {
     if (genreSerie.containsKey(serieId)) return genreSerie[serieId]!;
 
     final jsonData = await _getJsonData('3/tv/$serieId');
@@ -194,5 +193,11 @@ class SeriesProvider extends ChangeNotifier {
     });
 
     Future.delayed(Duration(milliseconds: 301)).then((_) => timer.cancel());
+  }
+
+  getSerieDetails(int serieId) async {
+    final jsonData = await _getJsonData('3/tv/$serieId');
+    final serieDetailsResponse = SerieDetails.fromJson(jsonData);
+    return serieDetailsResponse;
   }
 }

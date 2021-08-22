@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:peliculas_reversionado/models/serie/models.dart';
+import 'package:peliculas_reversionado/models/serie/serie.dart';
 import 'package:peliculas_reversionado/providers/series_provider.dart';
 import 'package:provider/provider.dart';
 

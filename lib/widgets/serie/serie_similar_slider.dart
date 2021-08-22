@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:peliculas_reversionado/models/serie/models.dart';
+import 'package:peliculas_reversionado/models/serie/serie.dart';
 import 'package:peliculas_reversionado/providers/series_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -66,7 +67,7 @@ class _SerieSimilarPoster extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    serie.heroId = 'similarSlider-${serie.id}';
+    //serie.heroId = 'similarSlider-${serie.id}';
     return Container(
       width: 100,
       height: 139,
@@ -77,7 +78,7 @@ class _SerieSimilarPoster extends StatelessWidget {
             onTap: () =>
                 Navigator.pushNamed(context, 'detailsSerie', arguments: serie),
             child: Hero(
-              tag: serie.heroId!,
+              tag: serie.id,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: CachedNetworkImage(
