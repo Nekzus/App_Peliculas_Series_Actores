@@ -58,10 +58,8 @@ class _SerieSliderState extends State<SerieSlider> {
                 controller: scrollController,
                 scrollDirection: Axis.horizontal,
                 itemCount: widget.series.length,
-                itemBuilder: (_, int index) => _SeriePoster(
-                      widget.series[index],
-                      //'${widget.title}-$index-${widget.series[index].id}'
-                    )),
+                itemBuilder: (_, int index) =>
+                    _SeriePoster(widget.series[index])),
           ),
         ],
       ),
@@ -71,13 +69,12 @@ class _SerieSliderState extends State<SerieSlider> {
 
 class _SeriePoster extends StatelessWidget {
   final Serie serie;
-  //final String heroId;
 
-  const _SeriePoster(this.serie /*, this.heroId*/);
+  const _SeriePoster(this.serie);
 
   @override
   Widget build(BuildContext context) {
-    //serie.heroId = heroId;
+    serie.heroId = 'serieSlider-${serie.id}';
     return Container(
       width: 100,
       height: 139,
@@ -88,7 +85,7 @@ class _SeriePoster extends StatelessWidget {
             onTap: () =>
                 Navigator.pushNamed(context, 'detailsSerie', arguments: serie),
             child: Hero(
-              tag: serie.id,
+              tag: serie.heroId!,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15.0),
                 child: CachedNetworkImage(

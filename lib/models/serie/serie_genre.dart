@@ -4,7 +4,7 @@ class SerieGenre {
     this.firstAirDate,
     this.genreIds,
     required this.id,
-    required this.name,
+    this.name,
     required this.originCountry,
     required this.originalLanguage,
     required this.originalName,
@@ -19,7 +19,7 @@ class SerieGenre {
   String? firstAirDate;
   List<int>? genreIds;
   int id;
-  String name;
+  String? name;
   List<String> originCountry;
   String originalLanguage;
   String originalName;
@@ -87,6 +87,23 @@ class SerieGenre {
       return 'Irlandés';
     }
     return originalLanguage.toUpperCase();
+  }
+
+  get fullGenreName {
+    if (this.name == "Action & Adventure") {
+      return 'Acción & Aventura';
+    } else if (this.name == "News") {
+      return 'Noticias';
+    } else if (this.name == "Sci-Fi & Fantasy") {
+      return 'Sci-Fi & Fantasía';
+    } else if (this.name == "Soap") {
+      return 'Telenovela';
+    } else if (this.name == "War & Politics") {
+      return 'Guerra & Política';
+    } else if (this.name == "Talk") {
+      return 'Entrevistas';
+    }
+    return name!.toUpperCase();
   }
 
   factory SerieGenre.fromJson(dynamic json) {

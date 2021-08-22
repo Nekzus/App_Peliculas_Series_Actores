@@ -104,7 +104,7 @@ class BuildWidgetCategorySerieState extends State<BuildWidgetCategorySerie> {
                                     : Colors.white,
                               ),
                               child: Text(
-                                genre.name!.toUpperCase(),
+                                genre.fullGenreName.toUpperCase(),
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
@@ -154,6 +154,8 @@ class BuildWidgetCategorySerieState extends State<BuildWidgetCategorySerie> {
                           itemBuilder: (context, index) {
                             SerieGenre serie = serieList[index];
 
+                            serie.heroId = 'categorySerie-${serie.id}';
+
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -164,7 +166,7 @@ class BuildWidgetCategorySerieState extends State<BuildWidgetCategorySerie> {
                                         arguments: serie);
                                   },
                                   child: Hero(
-                                    tag: serie.id,
+                                    tag: serie.heroId!,
                                     child: ClipRRect(
                                       child: CachedNetworkImage(
                                         imageUrl:
@@ -215,7 +217,7 @@ class BuildWidgetCategorySerieState extends State<BuildWidgetCategorySerie> {
                                 Container(
                                   width: 100,
                                   child: Text(
-                                    serie.name.toUpperCase(),
+                                    serie.fullGenreName.toUpperCase(),
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
                                     textAlign: TextAlign.center,

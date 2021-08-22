@@ -15,11 +15,11 @@ class SerieDetails {
     required this.name,
     required this.nextEpisodeToAir,
     required this.networks,
-    required this.numberOfEpisodes,
-    required this.numberOfSeasons,
+    this.numberOfEpisodes,
+    this.numberOfSeasons,
     required this.originCountry,
-    required this.originalLanguage,
-    required this.originalName,
+    this.originalLanguage,
+    this.originalName,
     required this.overview,
     required this.popularity,
     this.posterPath,
@@ -27,7 +27,7 @@ class SerieDetails {
     required this.productionCountries,
     required this.seasons,
     required this.spokenLanguages,
-    required this.status,
+    this.status,
     required this.tagline,
     required this.type,
     required this.voteAverage,
@@ -47,11 +47,11 @@ class SerieDetails {
   String name;
   dynamic nextEpisodeToAir;
   List<Network> networks;
-  int numberOfEpisodes;
-  int numberOfSeasons;
+  int? numberOfEpisodes;
+  int? numberOfSeasons;
   List<String> originCountry;
-  String originalLanguage;
-  String originalName;
+  String? originalLanguage;
+  String? originalName;
   String overview;
   double popularity;
   String? posterPath;
@@ -59,7 +59,7 @@ class SerieDetails {
   List<ProductionCountry> productionCountries;
   List<Season> seasons;
   List<SpokenLanguage> spokenLanguages;
-  String status;
+  String? status;
   String tagline;
   String type;
   String voteAverage;
@@ -119,8 +119,14 @@ class SerieDetails {
       return 'Hindi';
     } else if (this.originalLanguage == "ga") {
       return 'Irlandés';
+    } else if (this.originalLanguage == "tr") {
+      return 'Turco';
+    } else if (this.originalLanguage == "nl") {
+      return 'Holandés';
+    } else if (this.originalLanguage == "is") {
+      return 'Islandés';
     }
-    return originalLanguage.toUpperCase();
+    return originalLanguage!.toUpperCase();
   }
 
   get fullStatus {
@@ -130,8 +136,10 @@ class SerieDetails {
       return 'Cancelada';
     } else if (this.status == "Returning Series") {
       return 'Vigente';
+    } else if (this.status == "In Production") {
+      return 'En Producción';
     }
-    return status.toUpperCase();
+    return status!.toUpperCase();
   }
 
   factory SerieDetails.fromJson(String str) =>
@@ -254,11 +262,28 @@ class CreatedBy {
 class GenreSerie {
   GenreSerie({
     required this.id,
-    required this.name,
+    this.name,
   });
 
   int id;
-  String name;
+  String? name;
+
+  get fullGenreName {
+    if (this.name == "Action & Adventure") {
+      return 'Acción & Aventura';
+    } else if (this.name == "News") {
+      return 'Noticias';
+    } else if (this.name == "Sci-Fi & Fantasy") {
+      return 'Sci-Fi & Fantasía';
+    } else if (this.name == "Soap") {
+      return 'Telenovela';
+    } else if (this.name == "War & Politics") {
+      return 'Guerra & Política';
+    } else if (this.name == "Talk") {
+      return 'Entrevistas';
+    }
+    return name!.toUpperCase();
+  }
 
   factory GenreSerie.fromJson(String str) =>
       GenreSerie.fromMap(json.decode(str));

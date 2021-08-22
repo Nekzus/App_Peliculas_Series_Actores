@@ -67,7 +67,7 @@ class _SerieSimilarPoster extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //serie.heroId = 'similarSlider-${serie.id}';
+    serie.heroId = 'similarSlider-${serie.id}';
     return Container(
       width: 100,
       height: 139,
@@ -78,7 +78,7 @@ class _SerieSimilarPoster extends StatelessWidget {
             onTap: () =>
                 Navigator.pushNamed(context, 'detailsSerie', arguments: serie),
             child: Hero(
-              tag: serie.id,
+              tag: serie.heroId!,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: CachedNetworkImage(

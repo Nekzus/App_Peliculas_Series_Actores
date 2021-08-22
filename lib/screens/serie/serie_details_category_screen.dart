@@ -23,8 +23,7 @@ class SerieDetailsCategoryScreen extends StatelessWidget {
         _SerieCustomAppBar(serie),
         SliverList(
             delegate: SliverChildListDelegate([
-          SizedBox(height: 10.0),
-          SerieGenreDetailsWidget(serie.id),
+          _SeriePosterDetails(serie),
           SizedBox(height: 10.0),
           SerieGenreWidget(serie.id),
           _SerieOverview(serie),
@@ -58,7 +57,7 @@ class _SerieCustomAppBar extends StatelessWidget {
           padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
           color: Colors.black38,
           child: Text(
-            serie.name.toUpperCase(),
+            serie.fullGenreName.toUpperCase(),
             style: TextStyle(fontSize: 16),
             textAlign: TextAlign.center,
           ),
@@ -87,6 +86,44 @@ class _SerieOverview extends StatelessWidget {
       child: Text(
         serie.overview,
         textAlign: TextAlign.justify,
+      ),
+    );
+  }
+}
+
+class _SeriePosterDetails extends StatelessWidget {
+  final SerieGenre serie;
+
+  const _SeriePosterDetails(this.serie);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 10),
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Hero(
+            tag: serie.heroId!,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: CachedNetworkImage(
+                imageUrl: serie.fullPosterImg,
+                width: 100,
+                height: 139,
+                fit: BoxFit.cover,
+                placeholder: (context, url) => Container(
+                  width: 100,
+                  height: 139,
+                  child: Center(child: CupertinoActivityIndicator()),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: 15),
+          SerieDetailsWidget(serie.id)
+        ],
       ),
     );
   }
