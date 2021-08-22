@@ -1,4 +1,3 @@
-//import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -225,7 +224,7 @@ class SerieDetailsWidget extends StatelessWidget {
                               size: 11.0,
                             ),
                             SizedBox(width: 5.0),
-                            Text(series.voteAverage,
+                            Text(series.voteAverage!,
                                 style: TextStyle(
                                     fontSize: 11,
                                     fontWeight: FontWeight.bold,

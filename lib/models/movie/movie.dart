@@ -6,8 +6,8 @@ class Movie {
     this.backdropPath,
     required this.genreIds,
     required this.id,
-    required this.originalLanguage,
-    required this.originalTitle,
+    this.originalLanguage,
+    this.originalTitle,
     required this.overview,
     required this.popularity,
     this.posterPath,
@@ -22,8 +22,8 @@ class Movie {
   String? backdropPath;
   List<int> genreIds;
   int id;
-  String originalLanguage;
-  String originalTitle;
+  String? originalLanguage;
+  String? originalTitle;
   String overview;
   double popularity;
   String? posterPath;
@@ -87,8 +87,14 @@ class Movie {
       return 'Hindi';
     } else if (this.originalLanguage == "ga") {
       return 'Irlandés';
+    } else if (this.originalLanguage == "tr") {
+      return 'Turco';
+    } else if (this.originalLanguage == "nl") {
+      return 'Holandés';
+    } else if (this.originalLanguage == "is") {
+      return 'Islandés';
     }
-    return originalLanguage.toUpperCase();
+    return originalLanguage!.toUpperCase();
   }
 
   factory Movie.fromJson(String str) => Movie.fromMap(json.decode(str));

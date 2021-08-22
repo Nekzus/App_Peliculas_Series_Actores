@@ -24,7 +24,6 @@ class MoviesProvider extends ChangeNotifier {
   Map<int, List<Cast>> moviesCast = {};
   Map<int, List<GenreMovie>> genreMovie = {};
   Map<int, List<Movie>> moviesSimilar = {};
-  //Map<int, List<MovieGenre>> movieList = {};
 
   int _popularPage = 0;
   int _similarPage = 0;
@@ -172,5 +171,11 @@ class MoviesProvider extends ChangeNotifier {
       throw Exception(
           'Exception accoured: $error with stacktrace: $stacktrace');
     }
+  }
+
+  getMovieDetails(int movieId) async {
+    final jsonData = await _getJsonData('3/movie/$movieId');
+    final movieDetailsResponse = MovieDetails.fromJson(jsonData);
+    return movieDetailsResponse;
   }
 }

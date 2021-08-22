@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:peliculas_reversionado/providers/movies_provider.dart';
 import 'package:peliculas_reversionado/screens/movie/screens.dart';
 import 'package:peliculas_reversionado/search/movie_search_delegate.dart';
-import 'package:peliculas_reversionado/widgets/movie/card_swiper.dart';
+import 'package:peliculas_reversionado/widgets/movie/movie_card_swiper.dart';
 import 'package:peliculas_reversionado/widgets/movie/widgets.dart';
 import 'package:provider/provider.dart';
 

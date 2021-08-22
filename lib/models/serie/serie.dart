@@ -8,7 +8,7 @@ class Serie {
     required this.id,
     required this.name,
     required this.originCountry,
-    required this.originalLanguage,
+    this.originalLanguage,
     required this.originalName,
     required this.overview,
     required this.popularity,
@@ -23,12 +23,12 @@ class Serie {
   int id;
   String name;
   List<String> originCountry;
-  String originalLanguage;
+  String? originalLanguage;
   String originalName;
   String overview;
   double popularity;
   String? posterPath;
-  String voteAverage;
+  String? voteAverage;
   int voteCount;
   String? heroId;
 
@@ -85,8 +85,14 @@ class Serie {
       return 'Hindi';
     } else if (this.originalLanguage == "ga") {
       return 'Irlandés';
+    } else if (this.originalLanguage == "tr") {
+      return 'Turco';
+    } else if (this.originalLanguage == "nl") {
+      return 'Holandés';
+    } else if (this.originalLanguage == "is") {
+      return 'Islandés';
     }
-    return originalLanguage.toUpperCase();
+    return originalLanguage!.toUpperCase();
   }
 
   factory Serie.fromJson(String str) => Serie.fromMap(json.decode(str));

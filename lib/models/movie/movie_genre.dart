@@ -2,7 +2,8 @@ class MovieGenre {
   MovieGenre({
     this.backdropPath,
     required this.id,
-    required this.originalLanguage,
+    this.name,
+    this.originalLanguage,
     required this.originalTitle,
     required this.overview,
     required this.popularity,
@@ -16,7 +17,8 @@ class MovieGenre {
 
   String? backdropPath;
   int id;
-  String originalLanguage;
+  String? name;
+  String? originalLanguage;
   String originalTitle;
   String overview;
   double popularity;
@@ -83,14 +85,28 @@ class MovieGenre {
       return 'Hindi';
     } else if (this.originalLanguage == "ga") {
       return 'Irlandés';
+    } else if (this.originalLanguage == "tr") {
+      return 'Turco';
+    } else if (this.originalLanguage == "nl") {
+      return 'Holandés';
+    } else if (this.originalLanguage == "is") {
+      return 'Islandés';
     }
-    return originalLanguage.toUpperCase();
+    return originalLanguage!.toUpperCase();
+  }
+
+  get fullGenreName {
+    if (this.name == "Suspense") {
+      return 'Suspenso';
+    }
+    return name!.toUpperCase();
   }
 
   factory MovieGenre.fromJson(dynamic json) {
     return MovieGenre(
         backdropPath: json['backdrop_path'],
         id: json['id'],
+        name: json["name"],
         originalLanguage: json['original_language'],
         originalTitle: json['original_title'],
         overview: json['overview'],

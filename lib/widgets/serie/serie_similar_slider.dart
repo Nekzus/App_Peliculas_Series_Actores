@@ -132,7 +132,7 @@ class _SerieSimilarPoster extends StatelessWidget {
                     size: 11.5,
                   ),
                   SizedBox(width: 3.0),
-                  Text(serie.voteAverage, style: TextStyle(fontSize: 11.0)),
+                  Text(serie.voteAverage!, style: TextStyle(fontSize: 11.0)),
                 ],
               ))
         ],

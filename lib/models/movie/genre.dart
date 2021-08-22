@@ -4,6 +4,13 @@ class Genre {
 
   String? error;
 
+  get fullGenreName {
+    if (this.name == "Suspense") {
+      return 'Suspenso';
+    }
+    return name!.toUpperCase();
+  }
+
   Genre({this.id, this.name});
 
   factory Genre.fromJson(dynamic json) {

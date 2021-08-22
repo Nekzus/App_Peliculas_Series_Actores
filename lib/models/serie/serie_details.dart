@@ -62,7 +62,7 @@ class SerieDetails {
   String? status;
   String tagline;
   String type;
-  String voteAverage;
+  String? voteAverage;
   int voteCount;
   String? heroId;
 

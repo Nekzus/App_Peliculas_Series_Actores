@@ -1,10 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:intl/intl.dart';
 import 'package:peliculas_reversionado/models/serie/models.dart';
 import 'package:peliculas_reversionado/providers/series_provider.dart';
-//import 'package:peliculas_reversionado/utilities/utilities_format.dart';
 import 'package:peliculas_reversionado/widgets/serie/widgets.dart';
 import 'package:peliculas_reversionado/widgets/serie/serie_similar_slider.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +21,7 @@ class SerieDetailsCategoryScreen extends StatelessWidget {
         _SerieCustomAppBar(serie),
         SliverList(
             delegate: SliverChildListDelegate([
-          _SeriePosterDetails(serie),
+          _SeriePosterDetailsCategory(serie),
           SizedBox(height: 10.0),
           SerieGenreWidget(serie.id),
           _SerieOverview(serie),
@@ -91,10 +89,10 @@ class _SerieOverview extends StatelessWidget {
   }
 }
 
-class _SeriePosterDetails extends StatelessWidget {
+class _SeriePosterDetailsCategory extends StatelessWidget {
   final SerieGenre serie;
 
-  const _SeriePosterDetails(this.serie);
+  const _SeriePosterDetailsCategory(this.serie);
 
   @override
   Widget build(BuildContext context) {

@@ -3,57 +3,121 @@ import 'dart:convert';
 class MovieDetails {
   MovieDetails({
     required this.adult,
-    required this.backdropPath,
+    this.backdropPath,
     required this.belongsToCollection,
     required this.budget,
     required this.genres,
     required this.homepage,
     required this.id,
     required this.imdbId,
-    required this.originalLanguage,
-    required this.originalTitle,
+    this.originalLanguage,
+    this.originalTitle,
     required this.overview,
     required this.popularity,
-    required this.posterPath,
+    this.posterPath,
     required this.productionCompanies,
     required this.productionCountries,
-    required this.releaseDate,
+    this.releaseDate,
     required this.revenue,
-    required this.runtime,
+    this.runtime,
     required this.spokenLanguages,
     required this.status,
     required this.tagline,
     required this.title,
     required this.video,
-    required this.voteAverage,
+    this.voteAverage,
     required this.voteCount,
   });
 
   bool adult;
-  String backdropPath;
+  String? backdropPath;
   dynamic belongsToCollection;
   int budget;
   List<GenreMovie> genres;
   String homepage;
   int id;
   String imdbId;
-  String originalLanguage;
-  String originalTitle;
+  String? originalLanguage;
+  String? originalTitle;
   String overview;
   double popularity;
-  dynamic posterPath;
+  String? posterPath;
   List<ProductionCompany> productionCompanies;
   List<ProductionCountry> productionCountries;
-  DateTime releaseDate;
+  String? releaseDate;
   int revenue;
-  int runtime;
+  int? runtime;
   List<SpokenLanguage> spokenLanguages;
   String status;
   String tagline;
   String title;
   bool video;
-  double voteAverage;
+  String? voteAverage;
   int voteCount;
+  String? heroId;
+
+  get fullPosterImg {
+    if (this.posterPath != null)
+      return 'https://image.tmdb.org/t/p/w500${this.posterPath}';
+
+    return 'https://i.stack.imgur.com/GNhxO.png';
+  }
+
+  get fullBackdropPath {
+    if (this.backdropPath != null)
+      return 'https://image.tmdb.org/t/p/w500${this.backdropPath}';
+
+    return 'https://i.stack.imgur.com/GNhxO.png';
+  }
+
+  get fullOriginalLanguage {
+    if (this.originalLanguage == "en") {
+      return 'Inglés';
+    } else if (this.originalLanguage == "es") {
+      return 'Español';
+    } else if (this.originalLanguage == "ja") {
+      return 'Japonés';
+    } else if (this.originalLanguage == "fr") {
+      return 'Francés';
+    } else if (this.originalLanguage == "ko") {
+      return 'Koreano';
+    } else if (this.originalLanguage == "pt") {
+      return 'Portugués';
+    } else if (this.originalLanguage == "de") {
+      return 'Alemán';
+    } else if (this.originalLanguage == "pt") {
+      return 'Portugués';
+    } else if (this.originalLanguage == "pt") {
+      return 'Portugués';
+    } else if (this.originalLanguage == "ru") {
+      return 'Ruso';
+    } else if (this.originalLanguage == "ar") {
+      return 'Árabe';
+    } else if (this.originalLanguage == "pl") {
+      return 'Polaco';
+    } else if (this.originalLanguage == "fa") {
+      return 'Persa';
+    } else if (this.originalLanguage == "da") {
+      return 'Danés';
+    } else if (this.originalLanguage == "no") {
+      return 'Noruego';
+    } else if (this.originalLanguage == "zh") {
+      return 'Chino Mandarín';
+    } else if (this.originalLanguage == "it") {
+      return 'Italiano';
+    } else if (this.originalLanguage == "hi") {
+      return 'Hindi';
+    } else if (this.originalLanguage == "ga") {
+      return 'Irlandés';
+    } else if (this.originalLanguage == "tr") {
+      return 'Turco';
+    } else if (this.originalLanguage == "nl") {
+      return 'Holandés';
+    } else if (this.originalLanguage == "is") {
+      return 'Islandés';
+    }
+    return originalLanguage!.toUpperCase();
+  }
 
   factory MovieDetails.fromJson(String str) =>
       MovieDetails.fromMap(json.decode(str));
@@ -81,7 +145,7 @@ class MovieDetails {
         productionCountries: List<ProductionCountry>.from(
             json["production_countries"]
                 .map((x) => ProductionCountry.fromMap(x))),
-        releaseDate: DateTime.parse(json["release_date"]),
+        releaseDate: json["release_date"],
         revenue: json["revenue"],
         runtime: json["runtime"],
         spokenLanguages: List<SpokenLanguage>.from(
@@ -90,7 +154,7 @@ class MovieDetails {
         tagline: json["tagline"],
         title: json["title"],
         video: json["video"],
-        voteAverage: json["vote_average"].toDouble(),
+        voteAverage: json["vote_average"].toStringAsPrecision(2),
         voteCount: json["vote_count"],
       );
 
@@ -112,8 +176,6 @@ class MovieDetails {
             List<dynamic>.from(productionCompanies.map((x) => x.toMap())),
         "production_countries":
             List<dynamic>.from(productionCountries.map((x) => x.toMap())),
-        "release_date":
-            "${releaseDate.year.toString().padLeft(4, '0')}-${releaseDate.month.toString().padLeft(2, '0')}-${releaseDate.day.toString().padLeft(2, '0')}",
         "revenue": revenue,
         "runtime": runtime,
         "spoken_languages":
@@ -130,11 +192,18 @@ class MovieDetails {
 class GenreMovie {
   GenreMovie({
     required this.id,
-    required this.name,
+    this.name,
   });
 
   int id;
-  String name;
+  String? name;
+
+  get fullGenreName {
+    if (this.name == "Suspense") {
+      return 'Suspenso';
+    }
+    return name!.toUpperCase();
+  }
 
   factory GenreMovie.fromJson(String str) =>
       GenreMovie.fromMap(json.decode(str));

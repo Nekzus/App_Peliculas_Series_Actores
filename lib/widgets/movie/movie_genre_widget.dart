@@ -52,7 +52,7 @@ class MovieGenreWidget extends StatelessWidget {
                               ),
                               color: Colors.black45),
                           child: Text(
-                            genre.name.toUpperCase(),
+                            genre.fullGenreName.toUpperCase(),
                             style: TextStyle(
                               fontSize: 11,
                               fontWeight: FontWeight.bold,
