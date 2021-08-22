@@ -55,7 +55,8 @@ class _CustomAppBar extends StatelessWidget {
           color: Colors.black38,
           child: Text(
             movie.title.toUpperCase(),
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(
+                fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'muli'),
             textAlign: TextAlign.center,
           ),
         ),
@@ -83,6 +84,8 @@ class _Overview extends StatelessWidget {
       child: Text(
         movie.overview,
         textAlign: TextAlign.justify,
+        style: TextStyle(
+            fontSize: 14, fontWeight: FontWeight.normal, fontFamily: 'muli'),
       ),
     );
   }

@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 class SerieSearchDelegate extends SearchDelegate {
   @override
-  String get searchFieldLabel => 'Buscar serie';
+  String get searchFieldLabel => ('Buscar serie');
 
   @override
   List<Widget> buildActions(BuildContext context) {

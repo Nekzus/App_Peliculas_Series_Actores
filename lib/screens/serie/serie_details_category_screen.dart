@@ -56,7 +56,8 @@ class _SerieCustomAppBar extends StatelessWidget {
           color: Colors.black38,
           child: Text(
             serie.fullGenreName.toUpperCase(),
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(
+                fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'muli'),
             textAlign: TextAlign.center,
           ),
         ),
@@ -84,6 +85,8 @@ class _SerieOverview extends StatelessWidget {
       child: Text(
         serie.overview,
         textAlign: TextAlign.justify,
+        style: TextStyle(
+            fontSize: 14, fontWeight: FontWeight.normal, fontFamily: 'muli'),
       ),
     );
   }

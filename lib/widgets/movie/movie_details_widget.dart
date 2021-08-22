@@ -21,7 +21,7 @@ class MovieDetailsWidget extends StatelessWidget {
         builder: (_, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) {
             return Container(
-              constraints: BoxConstraints(maxWidth: 90),
+              width: 230,
               height: 185,
               child: CupertinoActivityIndicator(),
             );

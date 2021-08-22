@@ -21,7 +21,7 @@ class SerieDetailsWidget extends StatelessWidget {
         builder: (_, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) {
             return Container(
-              constraints: BoxConstraints(maxWidth: 90),
+              width: 230,
               height: 210,
               child: CupertinoActivityIndicator(),
             );

@@ -25,6 +25,7 @@ class CardSwiper extends StatelessWidget {
       child: Swiper(
         scrollDirection: Axis.horizontal,
         autoplay: true,
+        autoplayDelay: 5000,
         itemCount: movies.length,
         layout: SwiperLayout.STACK,
         itemWidth: size.width * 0.65,

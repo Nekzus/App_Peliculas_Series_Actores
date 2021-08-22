@@ -7,9 +7,9 @@ class MovieDetails {
     required this.belongsToCollection,
     required this.budget,
     required this.genres,
-    required this.homepage,
+    this.homepage,
     required this.id,
-    required this.imdbId,
+    this.imdbId,
     this.originalLanguage,
     this.originalTitle,
     required this.overview,
@@ -34,9 +34,9 @@ class MovieDetails {
   dynamic belongsToCollection;
   int budget;
   List<GenreMovie> genres;
-  String homepage;
+  String? homepage;
   int id;
-  String imdbId;
+  String? imdbId;
   String? originalLanguage;
   String? originalTitle;
   String overview;
@@ -115,6 +115,8 @@ class MovieDetails {
       return 'Holandés';
     } else if (this.originalLanguage == "is") {
       return 'Islandés';
+    } else if (this.originalLanguage == "cn") {
+      return 'Chino Cantonés';
     }
     return originalLanguage!.toUpperCase();
   }

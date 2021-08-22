@@ -7,7 +7,7 @@ class SerieDetails {
     required this.episodeRunTime,
     this.firstAirDate,
     required this.genres,
-    required this.homepage,
+    this.homepage,
     required this.id,
     required this.inProduction,
     required this.languages,
@@ -39,7 +39,7 @@ class SerieDetails {
   List<int> episodeRunTime;
   String? firstAirDate;
   List<GenreSerie> genres;
-  String homepage;
+  String? homepage;
   int id;
   bool inProduction;
   List<String> languages;
@@ -125,6 +125,8 @@ class SerieDetails {
       return 'Holandés';
     } else if (this.originalLanguage == "is") {
       return 'Islandés';
+    } else if (this.originalLanguage == "cn") {
+      return 'Chino Cantonés';
     }
     return originalLanguage!.toUpperCase();
   }

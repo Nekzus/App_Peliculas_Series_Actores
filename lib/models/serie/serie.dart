@@ -91,6 +91,8 @@ class Serie {
       return 'Holandés';
     } else if (this.originalLanguage == "is") {
       return 'Islandés';
+    } else if (this.originalLanguage == "cn") {
+      return 'Chino Cantonés';
     }
     return originalLanguage!.toUpperCase();
   }

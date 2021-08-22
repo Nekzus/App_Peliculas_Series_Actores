@@ -41,7 +41,7 @@ class SerieGenreWidget extends StatelessWidget {
                     return Column(
                       children: <Widget>[
                         Container(
-                          padding: EdgeInsets.all(10),
+                          padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
                               border: Border.all(
                                 color: Colors.black45,

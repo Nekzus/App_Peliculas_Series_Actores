@@ -1,11 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:intl/intl.dart';
 import 'package:peliculas_reversionado/models/serie/models.dart';
 import 'package:peliculas_reversionado/providers/series_provider.dart';
 import 'package:peliculas_reversionado/widgets/serie/widgets.dart';
-//import 'package:peliculas_reversionado/utilities/utilities_format.dart';
 import 'package:provider/provider.dart';
 
 class SerieDetailsScreen extends StatelessWidget {
@@ -56,7 +54,8 @@ class _SerieCustomAppBar extends StatelessWidget {
           color: Colors.black38,
           child: Text(
             serie.name.toUpperCase(),
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(
+                fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'muli'),
             textAlign: TextAlign.center,
           ),
         ),
@@ -84,6 +83,8 @@ class _SerieOverview extends StatelessWidget {
       child: Text(
         serie.overview,
         textAlign: TextAlign.justify,
+        style: TextStyle(
+            fontSize: 14, fontWeight: FontWeight.normal, fontFamily: 'muli'),
       ),
     );
   }
