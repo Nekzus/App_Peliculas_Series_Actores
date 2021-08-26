@@ -54,6 +54,7 @@ class Cast {
   int? order;
   String? department;
   String? job;
+  String? heroId;
 
   get fullProfilePath {
     if (this.profilePath != null)

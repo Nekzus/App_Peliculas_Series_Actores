@@ -129,7 +129,10 @@ class BuildWidgetCategorySerieState extends State<BuildWidgetCategorySerie> {
           Padding(
               padding: EdgeInsets.only(left: 20.0, bottom: 10.0, top: 10.0),
               child: Text('Series x Género'.toUpperCase(),
-                  style: Theme.of(context).textTheme.subtitle2)),
+                  style: TextStyle(
+                      fontSize: 12.5,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'muli'))),
           BlocBuilder<SerieBloc, SerieState>(
             builder: (context, state) {
               if (state is SerieLoading) {

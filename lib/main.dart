@@ -36,6 +36,8 @@ class MyApp extends StatelessWidget {
           'detailsSerie': (_) => SerieDetailsScreen(),
           'detailsCategoryMovie': (_) => DetailsCategory(),
           'detailsCategorySerie': (_) => SerieDetailsCategoryScreen(),
+          'detailsPersonMovie': (_) => DetailsPersonScreen(),
+          'detailsPersonSerie': (_) => DetailsPersonSerieScreen(),
         },
         theme: ThemeData.dark()
             .copyWith(appBarTheme: AppBarTheme(color: Colors.black)));

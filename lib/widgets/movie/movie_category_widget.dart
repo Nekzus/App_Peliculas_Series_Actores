@@ -128,7 +128,10 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
           Padding(
               padding: EdgeInsets.only(left: 20.0, bottom: 10.0, top: 10.0),
               child: Text('Películas x Género'.toUpperCase(),
-                  style: Theme.of(context).textTheme.subtitle2)),
+                  style: TextStyle(
+                      fontSize: 12.5,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'muli'))),
           BlocBuilder<MovieBloc, MovieState>(
             builder: (context, state) {
               if (state is MovieLoading) {

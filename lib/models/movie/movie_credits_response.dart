@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final creditsResponse = creditsResponseFromMap(jsonString);
-
 import 'dart:convert';
 
 class CreditsResponse {
@@ -57,6 +53,7 @@ class Cast {
   int? order;
   String? department;
   String? job;
+  String? heroId;
 
   get fullProfilePath {
     if (this.profilePath != null)

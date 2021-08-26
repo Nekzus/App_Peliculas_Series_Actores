@@ -224,6 +224,7 @@ class MovieDetailsWidget extends StatelessWidget {
   }
 
   String _getMovieDuration(int runtime) {
+    // ignore: unnecessary_null_comparison
     if (runtime == null) return '---';
     double movieHours = runtime / 60;
     int movieMinutes = ((movieHours - movieHours.floor()) * 60).round();

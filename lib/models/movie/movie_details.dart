@@ -117,6 +117,8 @@ class MovieDetails {
       return 'Islandés';
     } else if (this.originalLanguage == "cn") {
       return 'Chino Cantonés';
+    } else if (this.originalLanguage == "he") {
+      return 'Hebreo';
     }
     return originalLanguage!.toUpperCase();
   }

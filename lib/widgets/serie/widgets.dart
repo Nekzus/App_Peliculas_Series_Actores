@@ -8,3 +8,5 @@ export 'package:peliculas_reversionado/widgets/serie/serie_category_widget.dart'
 export 'package:peliculas_reversionado/widgets/serie/serie_slider.dart';
 export 'package:peliculas_reversionado/widgets/serie/serie_genre_widget.dart';
 export 'package:peliculas_reversionado/widgets/serie/serie_details_widget.dart';
+export 'package:peliculas_reversionado/widgets/serie/serie_person_details_widget.dart';
+export 'package:peliculas_reversionado/widgets/serie/person_serie_widget.dart';

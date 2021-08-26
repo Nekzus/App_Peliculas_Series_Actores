@@ -41,8 +41,11 @@ class _MovieSimilarSliderState extends State<MovieSimilarSlider> {
             children: [
               Padding(
                   padding: EdgeInsets.only(left: 20.0, bottom: 10.0),
-                  child: Text('Similares'.toUpperCase(),
-                      style: Theme.of(context).textTheme.subtitle2)),
+                  child: Text('Películas Similares'.toUpperCase(),
+                      style: TextStyle(
+                          fontSize: 12.5,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'muli'))),
               SizedBox(height: 5.0),
               Expanded(
                 child: ListView.builder(

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:peliculas_reversionado/models/person_details.dart';
 import 'package:peliculas_reversionado/models/serie/models.dart';
 import 'package:peliculas_reversionado/helpers/serie/debouncer.dart';
 
@@ -24,11 +25,13 @@ class SeriesProvider extends ChangeNotifier {
   Map<int, List<Cast>> seriesCast = {};
   Map<int, List<GenreSerie>> genreSerie = {};
   Map<int, List<Serie>> seriesSimilar = {};
+  Map<int, List<Serie>> personSeriesSimilar = {};
 
   int _popularPage = 0;
   int _topPage = 0;
   int _similarPage = 0;
   int _airingPage = 0;
+  int _personSimilarPage = 0;
 
   final debouncer = Debouncer(
     duration: Duration(milliseconds: 500),
@@ -199,5 +202,25 @@ class SeriesProvider extends ChangeNotifier {
     final jsonData = await _getJsonData('3/tv/$serieId');
     final serieDetailsResponse = SerieDetails.fromJson(jsonData);
     return serieDetailsResponse;
+  }
+
+  getPersonSerieDetails(int actorId) async {
+    final jsonData = await _getJsonData('3/person/$actorId');
+    final personDetailsResponse = PersonDetails.fromJson(jsonData);
+    return personDetailsResponse;
+  }
+
+  Future<List<Serie>> getPersonSeries(int serieId) async {
+    if (personSeriesSimilar.containsKey(serieId))
+      return personSeriesSimilar[serieId]!;
+    _personSimilarPage++;
+
+    final jsonData =
+        await _getJsonData('3/person/$serieId/tv_credits', _personSimilarPage);
+    final personSimilarResponse = SeriePersonCredits.fromJson(jsonData);
+
+    personSeriesSimilar[serieId] = personSimilarResponse.cast;
+
+    return personSimilarResponse.cast;
   }
 }

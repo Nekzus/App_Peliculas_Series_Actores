@@ -9,3 +9,4 @@ export 'package:peliculas_reversionado/models/serie/serie_search_response.dart';
 export 'package:peliculas_reversionado/models/serie/serie_airing_today.dart';
 export 'package:peliculas_reversionado/models/serie/serie_details.dart';
 export 'package:peliculas_reversionado/models/serie/serie.dart';
+export 'package:peliculas_reversionado/models/serie/serie_person_credits.dart';

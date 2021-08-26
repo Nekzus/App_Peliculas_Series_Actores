@@ -9,7 +9,7 @@ class Movie {
     this.originalLanguage,
     this.originalTitle,
     required this.overview,
-    required this.popularity,
+    this.popularity,
     this.posterPath,
     this.releaseDate,
     required this.title,
@@ -25,7 +25,7 @@ class Movie {
   String? originalLanguage;
   String? originalTitle;
   String overview;
-  double popularity;
+  String? popularity;
   String? posterPath;
   String? releaseDate;
   String title;
@@ -95,6 +95,8 @@ class Movie {
       return 'Islandés';
     } else if (this.originalLanguage == "cn") {
       return 'Chino Cantonés';
+    } else if (this.originalLanguage == "he") {
+      return 'Hebreo';
     }
     return originalLanguage!.toUpperCase();
   }
@@ -109,7 +111,7 @@ class Movie {
         originalLanguage: json["original_language"],
         originalTitle: json["original_title"],
         overview: json["overview"],
-        popularity: json["popularity"].toDouble(),
+        popularity: json["popularity"].toString(),
         posterPath: json["poster_path"],
         releaseDate: json["release_date"],
         title: json["title"],

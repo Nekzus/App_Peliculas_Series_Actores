@@ -80,7 +80,7 @@ class _Overview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
       child: Text(
         movie.overview,
         textAlign: TextAlign.justify,

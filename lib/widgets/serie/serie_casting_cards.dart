@@ -37,7 +37,10 @@ class SerieCastingCards extends StatelessWidget {
               Padding(
                   padding: EdgeInsets.only(left: 20.0, bottom: 10.0),
                   child: Text('Actores'.toUpperCase(),
-                      style: Theme.of(context).textTheme.subtitle2)),
+                      style: TextStyle(
+                          fontSize: 12.5,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'muli'))),
               SizedBox(height: 5.0),
               Expanded(
                 child: ListView.builder(
@@ -60,23 +63,31 @@ class _CastCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    actor.heroId = 'castSlider-${actor.id}';
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 8.0),
       width: 100,
       height: 100,
       child: Column(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(100.0)),
-            child: CachedNetworkImage(
-              imageUrl: actor.fullProfilePath,
-              width: 100,
-              height: 100,
-              fit: BoxFit.cover,
-              placeholder: (context, url) => Container(
-                width: 100,
-                height: 100,
-                child: Center(child: CupertinoActivityIndicator()),
+          GestureDetector(
+            onTap: () => Navigator.pushNamed(context, 'detailsPersonSerie',
+                arguments: actor),
+            child: Hero(
+              tag: actor.heroId!,
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(100.0)),
+                child: CachedNetworkImage(
+                  imageUrl: actor.fullProfilePath,
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => Container(
+                    width: 100,
+                    height: 100,
+                    child: Center(child: CupertinoActivityIndicator()),
+                  ),
+                ),
               ),
             ),
           ),

@@ -7,6 +7,7 @@ import 'package:peliculas_reversionado/helpers/movie/debouncer.dart';
 import 'package:peliculas_reversionado/helpers/movie/helpers.dart';
 import 'package:peliculas_reversionado/models/movie/models.dart';
 import 'package:peliculas_reversionado/models/movie/search_response.dart';
+import 'package:peliculas_reversionado/models/person_details.dart';
 
 class MoviesProvider extends ChangeNotifier {
   final Dio _dio = Dio();
@@ -24,9 +25,11 @@ class MoviesProvider extends ChangeNotifier {
   Map<int, List<Cast>> moviesCast = {};
   Map<int, List<GenreMovie>> genreMovie = {};
   Map<int, List<Movie>> moviesSimilar = {};
+  Map<int, List<Movie>> personMoviesSimilar = {};
 
   int _popularPage = 0;
   int _similarPage = 0;
+  int _personSimilarPage = 0;
 
   final debouncer = Debouncer(
     duration: Duration(milliseconds: 500),
@@ -177,5 +180,25 @@ class MoviesProvider extends ChangeNotifier {
     final jsonData = await _getJsonData('3/movie/$movieId');
     final movieDetailsResponse = MovieDetails.fromJson(jsonData);
     return movieDetailsResponse;
+  }
+
+  getPersonDetails(int actorId) async {
+    final jsonData = await _getJsonData('3/person/$actorId');
+    final personDetailsResponse = PersonDetails.fromJson(jsonData);
+    return personDetailsResponse;
+  }
+
+  Future<List<Movie>> getPersonMovies(int movieId) async {
+    if (personMoviesSimilar.containsKey(movieId))
+      return personMoviesSimilar[movieId]!;
+    _personSimilarPage++;
+
+    final jsonData = await _getJsonData(
+        '3/person/$movieId/movie_credits', _personSimilarPage);
+    final personSimilarResponse = MoviePersonCredits.fromJson(jsonData);
+
+    personMoviesSimilar[movieId] = personSimilarResponse.cast;
+
+    return personSimilarResponse.cast;
   }
 }
