@@ -35,7 +35,7 @@ class MovieDetails {
   int budget;
   List<GenreMovie> genres;
   String? homepage;
-  int id;
+  int? id;
   String? imdbId;
   String? originalLanguage;
   String? originalTitle;
@@ -44,8 +44,8 @@ class MovieDetails {
   String? posterPath;
   List<ProductionCompany> productionCompanies;
   List<ProductionCountry> productionCountries;
-  String? releaseDate;
-  int revenue;
+  DateTime? releaseDate;
+  int? revenue;
   int? runtime;
   List<SpokenLanguage> spokenLanguages;
   String status;
@@ -149,7 +149,9 @@ class MovieDetails {
         productionCountries: List<ProductionCountry>.from(
             json["production_countries"]
                 .map((x) => ProductionCountry.fromMap(x))),
-        releaseDate: json["release_date"],
+        releaseDate: json["release_date"] == null
+            ? null
+            : DateTime.parse(json["release_date"]),
         revenue: json["revenue"],
         runtime: json["runtime"],
         spokenLanguages: List<SpokenLanguage>.from(

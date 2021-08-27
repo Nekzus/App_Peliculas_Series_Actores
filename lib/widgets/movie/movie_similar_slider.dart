@@ -26,7 +26,7 @@ class _MovieSimilarSliderState extends State<MovieSimilarSlider> {
           return Container(
             constraints: BoxConstraints(maxWidth: 150),
             height: 235,
-            child: CupertinoActivityIndicator(),
+            child: Center(child: CupertinoActivityIndicator()),
           );
         }
 

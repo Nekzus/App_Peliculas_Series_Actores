@@ -21,7 +21,7 @@ class SerieCastingCards extends StatelessWidget {
           return Container(
             constraints: BoxConstraints(maxWidth: 150),
             height: 205,
-            child: CupertinoActivityIndicator(),
+            child: Center(child: CupertinoActivityIndicator()),
           );
         }
 
@@ -63,7 +63,7 @@ class _CastCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    actor.heroId = 'castSlider-${actor.id}';
+    actor.heroId = 'castserieSlider-${actor.id}';
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 8.0),
       width: 100,

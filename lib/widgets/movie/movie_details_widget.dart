@@ -22,15 +22,15 @@ class MovieDetailsWidget extends StatelessWidget {
           if (!snapshot.hasData) {
             return Container(
               width: 230,
-              height: 185,
-              child: CupertinoActivityIndicator(),
+              height: 210,
+              child: Center(child: CupertinoActivityIndicator()),
             );
           }
 
           final MovieDetails movies = snapshot.data!;
           return Container(
             margin: EdgeInsets.only(bottom: 5),
-            height: 185,
+            height: 210,
             child: Container(
               child: ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: size.width - 150),
@@ -90,8 +90,9 @@ class MovieDetailsWidget extends StatelessWidget {
                           ),
                           color: Colors.black45),
                       child: Text(
-                        'Fecha Estreno: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(movies.releaseDate!))}'
-                            .toUpperCase(),
+                        'Fecha Estreno: '.toUpperCase() +
+                            (DateFormat('dd-MM-yyyy')
+                                .format(movies.releaseDate!)),
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.bold,

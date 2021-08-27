@@ -31,7 +31,7 @@ class SeriesProvider extends ChangeNotifier {
   int _topPage = 0;
   int _similarPage = 0;
   int _airingPage = 0;
-  int _personSimilarPage = 0;
+  int _personSerieSimilarPage = 0;
 
   final debouncer = Debouncer(
     duration: Duration(milliseconds: 500),
@@ -213,10 +213,10 @@ class SeriesProvider extends ChangeNotifier {
   Future<List<Serie>> getPersonSeries(int serieId) async {
     if (personSeriesSimilar.containsKey(serieId))
       return personSeriesSimilar[serieId]!;
-    _personSimilarPage++;
+    _personSerieSimilarPage++;
 
-    final jsonData =
-        await _getJsonData('3/person/$serieId/tv_credits', _personSimilarPage);
+    final jsonData = await _getJsonData(
+        '3/person/$serieId/tv_credits', _personSerieSimilarPage);
     final personSimilarResponse = SeriePersonCredits.fromJson(jsonData);
 
     personSeriesSimilar[serieId] = personSimilarResponse.cast;

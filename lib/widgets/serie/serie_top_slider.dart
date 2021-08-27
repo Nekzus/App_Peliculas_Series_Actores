@@ -60,9 +60,8 @@ class _SerieTopSliderState extends State<SerieTopSlider> {
                 controller: scrollController,
                 scrollDirection: Axis.horizontal,
                 itemCount: widget.series.length,
-                itemBuilder: (_, int index) => _SerieTopPoster(
-                    widget.series[index],
-                    '${widget.title}-$index-${widget.series[index].id}')),
+                itemBuilder: (_, int index) =>
+                    _SerieTopPoster(widget.series[index])),
           ),
         ],
       ),
@@ -72,13 +71,12 @@ class _SerieTopSliderState extends State<SerieTopSlider> {
 
 class _SerieTopPoster extends StatelessWidget {
   final Serie serie;
-  final String heroId;
 
-  const _SerieTopPoster(this.serie, this.heroId);
+  const _SerieTopPoster(this.serie);
 
   @override
   Widget build(BuildContext context) {
-    serie.heroId = heroId;
+    serie.heroId = 'serieTopSlider-${serie.id}';
     return Container(
       width: 100,
       height: 139,

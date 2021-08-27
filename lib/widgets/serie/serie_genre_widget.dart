@@ -20,7 +20,7 @@ class SerieGenreWidget extends StatelessWidget {
           return Container(
             constraints: BoxConstraints(maxWidth: 150),
             height: 37,
-            child: CupertinoActivityIndicator(),
+            child: Center(child: CupertinoActivityIndicator()),
           );
         }
 

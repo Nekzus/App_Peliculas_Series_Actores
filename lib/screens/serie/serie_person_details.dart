@@ -81,9 +81,9 @@ class _MoviePosterDetailsCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 10),
-      padding: EdgeInsets.symmetric(horizontal: 5),
-      child: Row(
+      margin: EdgeInsets.only(top: 15),
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [PersonSerieDetailsWidget(actor.id)],
       ),

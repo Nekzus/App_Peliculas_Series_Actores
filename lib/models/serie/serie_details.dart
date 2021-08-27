@@ -37,13 +37,13 @@ class SerieDetails {
   String? backdropPath;
   List<CreatedBy> createdBy;
   List<int> episodeRunTime;
-  String? firstAirDate;
+  DateTime? firstAirDate;
   List<GenreSerie> genres;
   String? homepage;
   int id;
   bool inProduction;
   List<String> languages;
-  String? lastAirDate;
+  DateTime? lastAirDate;
   String name;
   dynamic nextEpisodeToAir;
   List<Network> networks;
@@ -156,16 +156,20 @@ class SerieDetails {
         createdBy: List<CreatedBy>.from(
             json["created_by"].map((x) => CreatedBy.fromMap(x))),
         episodeRunTime: List<int>.from(json["episode_run_time"].map((x) => x)),
-        firstAirDate: json["first_air_date"],
+        firstAirDate: json["first_air_date"] == null
+            ? null
+            : DateTime.parse(json["first_air_date"]),
         genres: List<GenreSerie>.from(
             json["genres"].map((x) => GenreSerie.fromMap(x))),
         homepage: json["homepage"],
         id: json["id"],
         inProduction: json["in_production"],
         languages: List<String>.from(json["languages"].map((x) => x)),
-        lastAirDate: json["last_air_date"],
+        lastAirDate: json["last_air_date"] == null
+            ? null
+            : DateTime.parse(json["last_air_date"]),
         name: json["name"],
-        nextEpisodeToAir: json["next_episode_to_air"],
+        nextEpisodeToAir: json["last_air_date"],
         networks:
             List<Network>.from(json["networks"].map((x) => Network.fromMap(x))),
         numberOfEpisodes: json["number_of_episodes"],

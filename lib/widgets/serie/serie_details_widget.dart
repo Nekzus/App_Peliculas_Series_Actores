@@ -23,7 +23,7 @@ class SerieDetailsWidget extends StatelessWidget {
             return Container(
               width: 230,
               height: 210,
-              child: CupertinoActivityIndicator(),
+              child: Center(child: CupertinoActivityIndicator()),
             );
           }
 
@@ -153,8 +153,9 @@ class SerieDetailsWidget extends StatelessWidget {
                           ),
                           color: Colors.black45),
                       child: Text(
-                        'Primer Episodio: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(series.firstAirDate!))}'
-                            .toUpperCase(),
+                        'Primer Episodio: '.toUpperCase() +
+                            (DateFormat('dd-MM-yyyy')
+                                .format(series.firstAirDate!)),
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.bold,
@@ -174,8 +175,9 @@ class SerieDetailsWidget extends StatelessWidget {
                           ),
                           color: Colors.black45),
                       child: Text(
-                        'Último Episodio: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(series.lastAirDate!))}'
-                            .toUpperCase(),
+                        'Último Episodio: '.toUpperCase() +
+                            (DateFormat('dd-MM-yyyy')
+                                .format(series.lastAirDate!)),
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.bold,

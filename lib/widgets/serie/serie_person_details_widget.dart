@@ -21,10 +21,11 @@ class PersonSerieDetailsWidget extends StatelessWidget {
         builder: (_, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) {
             return Container(
-              width: 300,
-              height: 400,
-              child: CupertinoActivityIndicator(),
-            );
+                width: 400,
+                height: 100,
+                child: Center(
+                  child: Center(child: CupertinoActivityIndicator()),
+                ));
           }
 
           final PersonDetails actors = snapshot.data!;
@@ -49,7 +50,7 @@ class PersonSerieDetailsWidget extends StatelessWidget {
                       child: Text(
                           'Nacimiento: '.toUpperCase() +
                               (DateFormat('dd-MM-yyyy')
-                                  .format(actors.birthday!)),
+                                  .format(actors.fullBirthday)),
                           style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.bold,
@@ -69,7 +70,7 @@ class PersonSerieDetailsWidget extends StatelessWidget {
                           ),
                           color: Colors.black45),
                       child: Text(
-                        _getPersonAge(actors.birthday!, actors.deathday),
+                        _getPersonAge(actors.fullBirthday, actors.deathday),
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.bold,
@@ -90,7 +91,7 @@ class PersonSerieDetailsWidget extends StatelessWidget {
                           color: Colors.black45),
                       child: Text(
                         'Lugar de Nacimiento: '.toUpperCase() +
-                            actors.placeOfBirth!.toUpperCase(),
+                            actors.fullPlaceOfBirth.toUpperCase(),
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.bold,
@@ -103,7 +104,6 @@ class PersonSerieDetailsWidget extends StatelessWidget {
                       height: 15,
                     ),
                     Container(
-                      //color: Colors.red,
                       padding: EdgeInsets.all(10),
                       child: Text(
                         actors.biography!,
@@ -128,13 +128,12 @@ class PersonSerieDetailsWidget extends StatelessWidget {
       Duration dura = DateTime.now().difference(dob);
       String differenceInYears = (dura.inDays / 365).floor().toString();
       return 'Edad: $differenceInYears años'.toUpperCase();
-    } else {
-      dynamic dod = DateTime.tryParse(deathday);
-      Duration dur = dod.difference(dob);
-      String differenceInYear = (dur.inDays / 365).floor().toString();
-      return 'Fallecimiento: '.toUpperCase() +
-          (DateFormat('dd-MM-yyyy').format(dod)) +
-          ' ($differenceInYear años)'.toUpperCase();
     }
+    dynamic dod = DateTime.tryParse(deathday);
+    Duration dur = dod.difference(dob);
+    String differenceInYear = (dur.inDays / 365).floor().toString();
+    return 'Fallecimiento: '.toUpperCase() +
+        (DateFormat('dd-MM-yyyy').format(dod)) +
+        ' ($differenceInYear años)'.toUpperCase();
   }
 }

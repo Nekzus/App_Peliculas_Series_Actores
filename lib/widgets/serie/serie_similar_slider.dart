@@ -27,7 +27,7 @@ class _SerieSimilarSliderState extends State<SerieSimilarSlider> {
           return Container(
             constraints: BoxConstraints(maxWidth: 150),
             height: 235,
-            child: CupertinoActivityIndicator(),
+            child: Center(child: CupertinoActivityIndicator()),
           );
         }
 
