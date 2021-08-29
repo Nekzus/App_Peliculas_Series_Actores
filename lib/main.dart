@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_config/flutter_config.dart';
+import 'package:peliculas_reversionado/env.dart';
 import 'package:peliculas_reversionado/providers/series_provider.dart';
 import 'package:peliculas_reversionado/screens/home_screen.dart';
 import 'package:peliculas_reversionado/screens/movie/screens.dart';
 import 'package:peliculas_reversionado/screens/serie/screens.dart';
 import 'package:peliculas_reversionado/screens/serie/serie_details_screen.dart';
 import 'package:provider/provider.dart';
-
 import 'package:peliculas_reversionado/providers/movies_provider.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await FlutterConfig.loadEnvVariables();
+  await Env.init();
 
   runApp(AppState());
 }

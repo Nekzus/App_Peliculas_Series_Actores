@@ -30,9 +30,9 @@
 .pub-cache/
 .pub/
 /build/
-.env
-node_modules/
-.gitignore
+*.env
+node_modules/*
+*.gitignore
 
 # Web related
 lib/generated_plugin_registrant.dart

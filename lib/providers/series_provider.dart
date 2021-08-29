@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_config/flutter_config.dart';
 import 'package:http/http.dart' as http;
 import 'package:peliculas_reversionado/models/person_details.dart';
 import 'package:peliculas_reversionado/models/serie/models.dart';
@@ -10,10 +9,10 @@ import 'package:peliculas_reversionado/providers/tmdb.dart';
 
 class SeriesProvider extends ChangeNotifier {
   final Dio _dio = Dio();
-  String _apiKey = FlutterConfig.get('API_KEY');
-  String _baseUrl = Tmdb.baseUrl;
-  String _baseUrlGenre = Tmdb.baseUrlGenre;
-  String _language = Tmdb.language;
+  String? _apiKey = Tmdb.apiKey;
+  String? _baseUrl = Tmdb.baseUrl;
+  String? _baseUrlGenre = Tmdb.baseUrlGenre;
+  String? _language = Tmdb.language;
 
   List<Serie> popularSeries = [];
   List<Serie> topSeries = [];
@@ -52,7 +51,7 @@ class SeriesProvider extends ChangeNotifier {
   }
 
   Future<String> _getJsonData(String endpoint, [int page = 1]) async {
-    final url = Uri.https(_baseUrl, endpoint,
+    final url = Uri.https(_baseUrl!, endpoint,
         {'api_key': _apiKey, 'language': _language, 'page': '$page'});
 
     final response = await http.get(url);
@@ -176,7 +175,7 @@ class SeriesProvider extends ChangeNotifier {
   }
 
   Future<List<Serie>> searchSeries(String query) async {
-    final url = Uri.https(_baseUrl, '3/search/tv',
+    final url = Uri.https(_baseUrl!, '3/search/tv',
         {'api_key': _apiKey, 'language': _language, 'query': query});
 
     final response = await http.get(url);
