@@ -1,20 +1,21 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:http/http.dart' as http;
 import 'package:peliculas_reversionado/helpers/movie/debouncer.dart';
 import 'package:peliculas_reversionado/helpers/movie/helpers.dart';
 import 'package:peliculas_reversionado/models/movie/models.dart';
 import 'package:peliculas_reversionado/models/movie/search_response.dart';
 import 'package:peliculas_reversionado/models/person_details.dart';
+import 'package:peliculas_reversionado/providers/tmdb.dart';
 
 class MoviesProvider extends ChangeNotifier {
   final Dio _dio = Dio();
-  String _apiKey = 'fd6e6e97276183956c3334241bf7dcf8';
-  String _baseUrl = 'api.themoviedb.org';
-  String _baseUrlGenre = 'https://api.themoviedb.org';
-  String _language = 'es-MX';
+  String _apiKey = FlutterConfig.get('API_KEY');
+  String _baseUrl = Tmdb.baseUrl;
+  String _baseUrlGenre = Tmdb.baseUrlGenre;
+  String _language = Tmdb.language;
 
   List<Movie> onDisplayMovies = [];
   List<Movie> popularMovies = [];
@@ -200,5 +201,12 @@ class MoviesProvider extends ChangeNotifier {
     personMoviesSimilar[movieId] = personSimilarResponse.cast;
 
     return personSimilarResponse.cast;
+  }
+
+  getMovieCertifications(int movieId) async {
+    final jsonData = await _getJsonData('3/movie/$movieId/release_dates');
+    final movieCertificationResponse =
+        MovieCertificationResponse.fromJson(jsonData);
+    return movieCertificationResponse.results;
   }
 }

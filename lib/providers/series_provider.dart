@@ -1,18 +1,19 @@
 import 'dart:async';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:http/http.dart' as http;
 import 'package:peliculas_reversionado/models/person_details.dart';
 import 'package:peliculas_reversionado/models/serie/models.dart';
 import 'package:peliculas_reversionado/helpers/serie/debouncer.dart';
+import 'package:peliculas_reversionado/providers/tmdb.dart';
 
 class SeriesProvider extends ChangeNotifier {
   final Dio _dio = Dio();
-  String _apiKey = 'fd6e6e97276183956c3334241bf7dcf8';
-  String _baseUrl = 'api.themoviedb.org';
-  String _baseUrlGenre = 'https://api.themoviedb.org';
-  String _language = 'es-MX';
+  String _apiKey = FlutterConfig.get('API_KEY');
+  String _baseUrl = Tmdb.baseUrl;
+  String _baseUrlGenre = Tmdb.baseUrlGenre;
+  String _language = Tmdb.language;
 
   List<Serie> popularSeries = [];
   List<Serie> topSeries = [];

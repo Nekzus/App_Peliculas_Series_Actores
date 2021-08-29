@@ -6,3 +6,4 @@ export 'package:peliculas_reversionado/widgets/movie/movie_genre_widget.dart';
 export 'package:peliculas_reversionado/widgets/movie/movie_details_widget.dart';
 export 'package:peliculas_reversionado/widgets/movie/person_movie_widget.dart';
 export 'package:peliculas_reversionado/widgets/movie/movie_person_details_widget.dart';
+export 'package:peliculas_reversionado/widgets/movie/movie_cerification_widget.dart';

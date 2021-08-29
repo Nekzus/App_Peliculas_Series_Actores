@@ -45,6 +45,12 @@ class _CustomAppBar extends StatelessWidget {
       expandedHeight: 200,
       floating: false,
       pinned: true,
+      actions: [
+        IconButton(
+          icon: Icon(Icons.home),
+          onPressed: () => Navigator.pushNamed(context, 'home'),
+        ),
+      ],
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
         titlePadding: EdgeInsets.all(0),

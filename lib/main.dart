@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:peliculas_reversionado/providers/series_provider.dart';
 import 'package:peliculas_reversionado/screens/home_screen.dart';
 import 'package:peliculas_reversionado/screens/movie/screens.dart';
@@ -8,7 +9,12 @@ import 'package:provider/provider.dart';
 
 import 'package:peliculas_reversionado/providers/movies_provider.dart';
 
-void main() => runApp(AppState());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterConfig.loadEnvVariables();
+
+  runApp(AppState());
+}
 
 class AppState extends StatelessWidget {
   @override

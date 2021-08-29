@@ -7,3 +7,4 @@ export 'package:peliculas_reversionado/models/movie/genre.dart';
 export 'package:peliculas_reversionado/models/movie/movie_genre.dart';
 export 'package:peliculas_reversionado/models/movie/movie_details.dart';
 export 'package:peliculas_reversionado/models/movie/movie_person_credits.dart';
+export 'package:peliculas_reversionado/models/movie/movie_certification_release.dart';
