@@ -20,7 +20,6 @@ class DetailsScreen extends StatelessWidget {
         SliverList(
             delegate: SliverChildListDelegate([
           _MoviePosterDetailsCategory(movie),
-          SizedBox(height: 10.0),
           MovieGenreWidget(movie.id),
           _Overview(movie),
           SizedBox(height: 5.0),

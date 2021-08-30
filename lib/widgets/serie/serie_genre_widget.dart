@@ -19,16 +19,16 @@ class SerieGenreWidget extends StatelessWidget {
         if (!snapshot.hasData) {
           return Container(
             constraints: BoxConstraints(maxWidth: 150),
-            height: 37,
+            height: 30,
             child: Center(child: CupertinoActivityIndicator()),
           );
         }
 
         final List<GenreSerie> genres = snapshot.data!;
         return Container(
-          margin: EdgeInsets.only(bottom: 5),
+          margin: EdgeInsets.only(bottom: 2),
           width: double.infinity,
-          height: 37,
+          height: 30,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

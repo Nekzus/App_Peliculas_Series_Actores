@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:peliculas_reversionado/models/serie/models.dart';
+
 class SerieDetails {
   SerieDetails({
     this.backdropPath,
@@ -149,8 +151,6 @@ class SerieDetails {
   factory SerieDetails.fromJson(String str) =>
       SerieDetails.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory SerieDetails.fromMap(Map<String, dynamic> json) => SerieDetails(
         backdropPath: json["backdrop_path"],
         createdBy: List<CreatedBy>.from(
@@ -195,40 +195,6 @@ class SerieDetails {
         voteAverage: json["vote_average"].toStringAsPrecision(2),
         voteCount: json["vote_count"],
       );
-
-  Map<String, dynamic> toMap() => {
-        "backdrop_path": backdropPath,
-        "created_by": List<dynamic>.from(createdBy.map((x) => x.toMap())),
-        "episode_run_time": List<dynamic>.from(episodeRunTime.map((x) => x)),
-        "genres": List<dynamic>.from(genres.map((x) => x.toMap())),
-        "homepage": homepage,
-        "id": id,
-        "in_production": inProduction,
-        "languages": List<dynamic>.from(languages.map((x) => x)),
-        "name": name,
-        "next_episode_to_air": nextEpisodeToAir,
-        "networks": List<dynamic>.from(networks.map((x) => x.toMap())),
-        "number_of_episodes": numberOfEpisodes,
-        "number_of_seasons": numberOfSeasons,
-        "origin_country": List<dynamic>.from(originCountry.map((x) => x)),
-        "original_language": originalLanguage,
-        "original_name": originalName,
-        "overview": overview,
-        "popularity": popularity,
-        "poster_path": posterPath,
-        "production_companies":
-            List<dynamic>.from(productionCompanies.map((x) => x.toMap())),
-        "production_countries":
-            List<dynamic>.from(productionCountries.map((x) => x.toMap())),
-        "seasons": List<dynamic>.from(seasons.map((x) => x.toMap())),
-        "spoken_languages":
-            List<dynamic>.from(spokenLanguages.map((x) => x.toMap())),
-        "status": status,
-        "tagline": tagline,
-        "type": type,
-        "vote_average": voteAverage,
-        "vote_count": voteCount,
-      };
 }
 
 class CreatedBy {
@@ -248,8 +214,6 @@ class CreatedBy {
 
   factory CreatedBy.fromJson(String str) => CreatedBy.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory CreatedBy.fromMap(Map<String, dynamic> json) => CreatedBy(
         id: json["id"],
         creditId: json["credit_id"],
@@ -257,14 +221,6 @@ class CreatedBy {
         gender: json["gender"],
         profilePath: json["profile_path"],
       );
-
-  Map<String, dynamic> toMap() => {
-        "id": id,
-        "credit_id": creditId,
-        "name": name,
-        "gender": gender,
-        "profile_path": profilePath,
-      };
 }
 
 class GenreSerie {
@@ -296,49 +252,10 @@ class GenreSerie {
   factory GenreSerie.fromJson(String str) =>
       GenreSerie.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory GenreSerie.fromMap(Map<String, dynamic> json) => GenreSerie(
         id: json["id"],
         name: json["name"],
       );
-
-  Map<String, dynamic> toMap() => {
-        "id": id,
-        "name": name,
-      };
-}
-
-class Network {
-  Network({
-    required this.name,
-    required this.id,
-    required this.logoPath,
-    required this.originCountry,
-  });
-
-  String name;
-  int id;
-  String? logoPath;
-  String originCountry;
-
-  factory Network.fromJson(String str) => Network.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory Network.fromMap(Map<String, dynamic> json) => Network(
-        name: json["name"],
-        id: json["id"],
-        logoPath: json["logo_path"] == null ? null : json["logo_path"],
-        originCountry: json["origin_country"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "name": name,
-        "id": id,
-        "logo_path": logoPath == null ? null : logoPath,
-        "origin_country": originCountry,
-      };
 }
 
 class ProductionCountry {
@@ -353,18 +270,11 @@ class ProductionCountry {
   factory ProductionCountry.fromJson(String str) =>
       ProductionCountry.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory ProductionCountry.fromMap(Map<String, dynamic> json) =>
       ProductionCountry(
         iso31661: json["iso_3166_1"],
         name: json["name"],
       );
-
-  Map<String, dynamic> toMap() => {
-        "iso_3166_1": iso31661,
-        "name": name,
-      };
 }
 
 class Season {
@@ -388,8 +298,6 @@ class Season {
 
   factory Season.fromJson(String str) => Season.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory Season.fromMap(Map<String, dynamic> json) => Season(
         //airDate: DateTime.parse(json["air_date"]),
         episodeCount: json["episode_count"],
@@ -399,17 +307,6 @@ class Season {
         posterPath: json["poster_path"],
         seasonNumber: json["season_number"],
       );
-
-  Map<String, dynamic> toMap() => {
-        /* "air_date":
-            "${airDate!.year.toString().padLeft(4, '0')}-${airDate!.month.toString().padLeft(2, '0')}-${airDate!.day.toString().padLeft(2, '0')}", */
-        "episode_count": episodeCount,
-        "id": id,
-        "name": name,
-        "overview": overview,
-        "poster_path": posterPath,
-        "season_number": seasonNumber,
-      };
 }
 
 class SpokenLanguage {
@@ -426,17 +323,9 @@ class SpokenLanguage {
   factory SpokenLanguage.fromJson(String str) =>
       SpokenLanguage.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory SpokenLanguage.fromMap(Map<String, dynamic> json) => SpokenLanguage(
         englishName: json["english_name"],
         iso6391: json["iso_639_1"],
         name: json["name"],
       );
-
-  Map<String, dynamic> toMap() => {
-        "english_name": englishName,
-        "iso_639_1": iso6391,
-        "name": name,
-      };
 }

@@ -21,6 +21,7 @@ class SerieDetailsScreen extends StatelessWidget {
             delegate: SliverChildListDelegate([
           _SeriePosterDetails(serie),
           SizedBox(height: 10.0),
+          SerieNetworkWidget(serie.id),
           SerieGenreWidget(serie.id),
           _SerieOverview(serie),
           SizedBox(height: 5.0),

@@ -22,7 +22,7 @@ class MovieDetailsWidget extends StatelessWidget {
           if (!snapshot.hasData) {
             return Container(
               width: 230,
-              height: 210,
+              height: 200,
               child: Center(child: CupertinoActivityIndicator()),
             );
           }
@@ -30,7 +30,7 @@ class MovieDetailsWidget extends StatelessWidget {
           final MovieDetails movies = snapshot.data!;
           return Container(
             margin: EdgeInsets.only(bottom: 5),
-            height: 210,
+            height: 200,
             child: Container(
               child: ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: size.width - 150),

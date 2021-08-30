@@ -223,4 +223,10 @@ class SeriesProvider extends ChangeNotifier {
 
     return personSimilarResponse.cast;
   }
+
+  getNetworksSeries(int serieId) async {
+    final jsonData = await _getJsonData('3/network/$serieId');
+    final networkSerieResponse = Network.fromJson(jsonData);
+    return networkSerieResponse;
+  }
 }
