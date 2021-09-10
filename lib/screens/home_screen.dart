@@ -7,9 +7,6 @@ import 'package:peliculas_reversionado/screens/serie/screens.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //final moviesProvider = Provider.of<MoviesProvider>(context);
-    //final seriesProvider = Provider.of<SeriesProvider>(context);
-    //final searchTabService = MovieSearchDelegate();
     return DefaultTabController(
       initialIndex: 0,
       length: 2,
@@ -34,12 +31,6 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        /* actions: [
-              IconButton(
-                  onPressed: () =>
-                      showSearch(context: context, delegate: searchTabService),
-                  icon: Icon(Icons.search_outlined))
-            ] */
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
